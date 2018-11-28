@@ -5,27 +5,6 @@ using System;
 using System.IO;
 using Unity.Mathematics;
 
-public struct AnimationClipDataBaked
-{
-    public float TextureOffset;
-    public float TextureRange;
-    public float OnePixelOffset;
-    public int TextureWidth;
-
-    public float AnimationLength;
-    public bool Looping;
-}
-
-public struct AnimationName
-{
-    public const int Attack1 = 0;
-    public const int Attack2 = 1;
-    public const int AttackRanged = 2;
-    public const int Death = 3;
-    public const int Falling = 4;
-    public const int Idle = 5;
-    public const int Walk = 6;
-}
 public class GPUSkinAnimBakeStart : MonoBehaviour {
     public GameObject go;
     public Material material;
@@ -102,7 +81,7 @@ public class GPUSkinAnimBakeStart : MonoBehaviour {
             AnimationClipDataBaked data = new AnimationClipDataBaked();
             data.AnimationLength = bakedData.Animations[i].Clip.length;
             GetTextureRangeAndOffset(bakedData, bakedData.Animations[i], out data.TextureRange, out data.TextureOffset, out data.OnePixelOffset, out data.TextureWidth);
-            data.Looping = bakedData.Animations[i].Clip.wrapMode == WrapMode.Loop;
+            //data.Looping = bakedData.Animations[i].Clip.wrapMode == WrapMode.Loop;
             animationClipData[(int)0 * 25 + i] = data;
         }
     }
@@ -241,7 +220,6 @@ class LodedDrawer
 
     public LodedDrawer(Mesh mesh, Material mat, KeyframeTextureBaker.BakedData data, AnimationClipDataBaked[] clipData, List<Formation> formList)
     {
-        this.formList = formList;
         count = formList.Count * formList[0].Count();
         animationClipData = clipData;
         bakedData = data;

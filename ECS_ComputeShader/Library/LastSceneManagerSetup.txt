@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/GPUSking_Anim_Bake/GPUSkinBaker.unity
+- path: Assets/GPUSking_Anim_Bake/GPUSkinBakerECS.unity
   isLoaded: 1
   isActive: 1
