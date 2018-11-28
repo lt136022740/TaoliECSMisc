@@ -85,22 +85,22 @@
     <None Include="Assets\Standard.shader" />
     <None Include="Assets\UMotion\Editor Default Resources\UMotionEditor\Shaders\CameraLit.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>E:/ECS_ComputeShader/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>E:/GitDesc/TaoliECSMisc/ECS_ComputeShader/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/ECS_ComputeShader/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>E:/GitDesc/TaoliECSMisc/ECS_ComputeShader/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>E:/ECS_ComputeShader/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>E:/GitDesc/TaoliECSMisc/ECS_ComputeShader/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>E:/ECS_ComputeShader/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <HintPath>E:/GitDesc/TaoliECSMisc/ECS_ComputeShader/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>E:/ECS_ComputeShader/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>E:/GitDesc/TaoliECSMisc/ECS_ComputeShader/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/ECS_ComputeShader/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>E:/GitDesc/TaoliECSMisc/ECS_ComputeShader/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>F:/unity2-18/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -301,7 +301,7 @@
       <HintPath>F:/unity2-18/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UMotionApplication">
-      <HintPath>E:/ECS_ComputeShader/Assets/UMotion/Editor Default Resources/UMotionEditor/Plugins/Application/UMotionApplication.dll</HintPath>
+      <HintPath>E:/GitDesc/TaoliECSMisc/ECS_ComputeShader/Assets/UMotion/Editor Default Resources/UMotionEditor/Plugins/Application/UMotionApplication.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/123/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
