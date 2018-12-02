@@ -28,7 +28,7 @@ public static class KeyframeTextureBaker
     public static BakedData BakeClips(SkinnedMeshRenderer originalRenderer, AnimationClip[] animationClips, LodData lods)
     {
         BakedData bakedData = new BakedData();
-
+       
         bakedData.NewMesh = CreateMesh(originalRenderer, lods.Scale);
         var lod1Mesh = CreateMesh(originalRenderer, lods.Scale, lods.Lod1Mesh);
         var lod2Mesh = CreateMesh(originalRenderer, lods.Scale, lods.Lod2Mesh);
@@ -49,6 +49,7 @@ public static class KeyframeTextureBaker
 
         for (int i = 0; i < animationClips.Length; i++)
         {
+            Debug.Log("x " + i + " " + animationClips[i].name);
             var sampledMatrix = SampleAnimationClip(animationClips[i], originalRenderer, bakedData.Framerate);
             sampledBoneMatrices.Add(sampledMatrix);
 

@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8658525a8689dfb46aaaa0c12ec93297, type: 3}
   m_Name: PreSetting
   m_EditorClassIdentifier: 
-  go: {fileID: 1546081687840470, guid: 50d22a5bae6ef454db237681067b3712, type: 2}
-  material: {fileID: 2100000, guid: 65dbb1cf9f275aa46a954f8bbfc9fb16, type: 2}
-  mesh0: {fileID: 4300000, guid: 325d845a8317c2240905bd464b84d6f8, type: 3}
-  mesh1: {fileID: 4300000, guid: a026128cbd160514dafed0565a516ed2, type: 3}
-  mesh2: {fileID: 4300000, guid: a74541195774e1c4cbf37ae045cfb255, type: 3}
+  go: {fileID: 1535663483248868, guid: 7c020ced99139ad4c9a70844144a06ce, type: 2}
+  material: {fileID: 2100000, guid: 14649a0a8ecfc2544ae2e92328f528d4, type: 2}
+  mesh0: {fileID: 0}
+  mesh1: {fileID: 0}
+  mesh2: {fileID: 0}

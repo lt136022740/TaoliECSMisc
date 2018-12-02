@@ -25,6 +25,7 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
 
     KeyframeTextureBaker.BakedData bakedData;
     protected override void OnUpdate()
+
     {
         initilize();
         deltaTime += Time.deltaTime;
@@ -33,6 +34,7 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
             deltaTime = deltaTime,
             formationList = formationList,
             animationClips = animationClipData,
+            motionDeltaTime = (long)Time.realtimeSinceStartup,
             DistanceMaxLod0 = bakedData.lods.Lod1Distance,
             DistanceMaxLod1 = bakedData.lods.Lod2Distance,
             DistanceMaxLod2 = bakedData.lods.Lod3Distance,
@@ -123,6 +125,8 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
         [ReadOnly]
         public float DistanceMaxLod2;
 
+        public long motionDeltaTime;
+
         public void Execute( )
         {
             //deltaTime += Time.deltaTime;
@@ -133,13 +137,14 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
                 for (int j = 0; j < formation.count(); j++)
                 {
                     float3 center = formation.formationPosition;
-                    float3 v3 = new float3(center.x + j % formation.width, 1, center.z + j / formation.width);
+                    float3 v3 = new float3(center.x + j % formation.width * 3f, 1, center.z + j / formation.width * 3);
                     float4 v4 = new float4(v3.x, v3.y, v3.z, 1);
-
-                    AnimationClipDataBaked clip = animationClips[(int)0 * 25 + AnimationName.Attack1];
+                    int index = Randomizer.Range(0, 6, ref motionDeltaTime);
+                    AnimationClipDataBaked clip = animationClips[(int)0 * 25 + index];
                     normalizedTime = /*normalizedTimeStart*/0 + deltaTime / clip.AnimationLength;
-                    normalizedTime = normalizedTime % 1.0f;
-
+                    //Unity.Mathematics.Random r = new Unity.Mathematics.Random((uint)Time.realtimeSinceStartup);
+                    float rad = Randomizer.Float(0.1f, 0.3f, ref motionDeltaTime);
+                    normalizedTime = (normalizedTime + rad) % 1.0f;
                     float texturePosition = normalizedTime * clip.TextureRange + clip.TextureOffset;
                     int lowerPixelInt = (int)math.floor(texturePosition * clip.TextureWidth);
 
@@ -272,9 +277,9 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
         //UnityEngine.Object fGo = Resources.Load("Formation");
         for (int i = 0; i < formationCount; i++)
         {
-            Vector3 formationPosition = new Vector3(i % 5 * (width + 5), 1, i / 5 * (height + 4));
+            Vector3 formationPosition = new Vector3(i % 5  * (width + 30), 1, i / 5 * (height + 20));
 
-            //GameObject instance = Object.Instantiate(fGo) as GameObject;
+            //GameObject instance = Object.Instantiate(fGo) as GameObject; 
             //instance.name = "Formation_" + i;
             //Formation form = instance.GetComponent<Formation>();
             //form.Init(width, height);
@@ -320,7 +325,7 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
             animationClips.Add(state.clip);
         }
 
-        animationClips.Sort((x, y) => String.Compare(x.name, y.name, StringComparison.Ordinal));
+        //animationClips.Sort((x, y) => String.Compare(x.name, y.name, StringComparison.Ordinal));
 
         return animationClips.ToArray();
     }
