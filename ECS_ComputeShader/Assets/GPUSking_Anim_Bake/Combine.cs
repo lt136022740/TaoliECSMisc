@@ -37,7 +37,6 @@ public class Combine : MonoBehaviour {
         // 遍历所有蒙皮网格渲染器，以计算出所有需要合并的网格、UV、骨骼的信息
         foreach (SkinnedMeshRenderer smr in root.GetComponentsInChildren<SkinnedMeshRenderer>())
         {
-            Debug.Log(smr.name );
             for (int sub = 0; sub < smr.sharedMesh.subMeshCount; sub++)
             {
                 CombineInstance ci = new CombineInstance();
@@ -66,6 +65,25 @@ public class Combine : MonoBehaviour {
                 }
             }
             smr.enabled = false;
+        }
+
+        MeshFilter[] meshFilters = root.GetComponentsInChildren<MeshFilter>();
+        //CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+        Material[] mats = new Material[meshFilters.Length];
+        Matrix4x4 matrix = root.worldToLocalMatrix;
+        for (int i = 0; i < meshFilters.Length; i++)
+        {
+            MeshFilter mf = meshFilters[i];
+            MeshRenderer mr = meshFilters[i].GetComponent<MeshRenderer>();
+            if (mr == null)
+            {
+                continue;
+            }
+            CombineInstance ci = new CombineInstance();
+            ci.mesh = mf.sharedMesh;
+            ci.transform = matrix * mf.transform.localToWorldMatrix;
+            //mr.enabled = false;
+            combineInstances.Add(ci);
         }
 
         // 获取并配置角色所有的SkinnedMeshRenderer
