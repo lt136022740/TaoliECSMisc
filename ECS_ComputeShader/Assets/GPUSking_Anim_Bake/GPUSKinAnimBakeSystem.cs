@@ -88,7 +88,7 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
         lodDrawer2.listTexturePositionData.Clear();
         lodDrawer3.listTexturePositionData.Clear();
 
-       
+
     }
     [BurstCompile]
     public struct JobAnim : IJob
@@ -127,7 +127,7 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
 
         public long motionDeltaTime;
 
-        public void Execute( )
+        public void Execute()
         {
             //deltaTime += Time.deltaTime;
             for (int i = 0; i < formationList.Length; ++i)
@@ -139,7 +139,7 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
                     float3 center = formation.formationPosition;
                     float3 v3 = new float3(center.x + j % formation.width * 3f, 1, center.z + j / formation.width * 3);
                     float4 v4 = new float4(v3.x, v3.y, v3.z, 1);
-                    int index = Randomizer.Range(0, 6, ref motionDeltaTime);
+                    int index = 16; //Randomizer.Range(0, 6, ref motionDeltaTime);
                     AnimationClipDataBaked clip = animationClips[(int)0 * 25 + index];
                     normalizedTime = /*normalizedTimeStart*/0 + deltaTime / clip.AnimationLength;
                     //Unity.Mathematics.Random r = new Unity.Mathematics.Random((uint)Time.realtimeSinceStartup);
@@ -156,25 +156,25 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
                     if (distance < DistanceMaxLod0)
                     {
                         listPositionData0.Add(v4);
-                        listRotation0.Add(Quaternion.LookRotation(new Vector3(0, 9, 0), new Vector3(0.0f, 1, 0.0f)));
+                        listRotation0.Add(Quaternion.LookRotation(new Vector3(-90, 9, 0), new Vector3(0.0f, 1, 0.0f)));
                         listTexturePosition0.Add(texturePositionData);
                     }
                     else if (distance < DistanceMaxLod1)
                     {
                         listPositionData1.Add(v4);
-                        listRotation1.Add(Quaternion.LookRotation(new Vector3(0, 8, 0), new Vector3(0.0f, 1, 0.0f)));
+                        listRotation1.Add(Quaternion.LookRotation(new Vector3(-90, 8, 0), new Vector3(0.0f, 1, 0.0f)));
                         listTexturePosition1.Add(texturePositionData);
                     }
                     else if (distance < DistanceMaxLod2)
                     {
                         listPositionData2.Add(v4);
-                        listRotation2.Add(Quaternion.LookRotation(new Vector3(0, 7, 0), new Vector3(0.0f, 1, 0.0f)));
+                        listRotation2.Add(Quaternion.LookRotation(new Vector3(-90, 7, 0), new Vector3(0.0f, 1, 0.0f)));
                         listTexturePosition2.Add(texturePositionData);
                     }
                     else
                     {
                         listPositionData3.Add(v4);
-                        listRotation3.Add(Quaternion.LookRotation(new Vector3(0,30, 0), new Vector3(0.0f, 1, 0.0f)));
+                        listRotation3.Add(Quaternion.LookRotation(new Vector3(-90, 30, 0), new Vector3(0.0f, 1, 0.0f)));
                         listTexturePosition3.Add(texturePositionData);
                     }
                 }
@@ -270,14 +270,16 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
         lodData.Lod3Distance = 30;
         Material material = setting.material;
 
-        bakedData = KeyframeTextureBaker.BakeClips(renderer, GetAllAnimationClips(renderer.GetComponentInParent<Animation>()), lodData);
+        SkinnedMeshRenderer r = Combine.CombineIt(bakingObject.transform);
+        //bakedData = KeyframeTextureBaker.BakeClips(renderer, GetAllAnimationClips(renderer.GetComponentInParent<Animation>()), lodData);
+        bakedData = KeyframeTextureBaker.BakeClips(r, GetAllAnimationClips(r.GetComponentInParent<Animation>()), lodData);
 
         TransferAnimationData();
 
         //UnityEngine.Object fGo = Resources.Load("Formation");
         for (int i = 0; i < formationCount; i++)
         {
-            Vector3 formationPosition = new Vector3(i % 5  * (width + 30), 1, i / 5 * (height + 20));
+            Vector3 formationPosition = new Vector3(i % 5 * (width + 30), 1, i / 5 * (height + 20));
 
             //GameObject instance = Object.Instantiate(fGo) as GameObject; 
             //instance.name = "Formation_" + i;

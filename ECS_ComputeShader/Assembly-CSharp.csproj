@@ -64,6 +64,7 @@
     <Compile Include="Assets\DrawInstanceNavMeshTest\DrawInstanceNavMeshTest.cs" />
     <Compile Include="Assets\FPS.cs" />
     <Compile Include="Assets\GPUSking_Anim_Bake\AnimationPropertyDefine.cs" />
+    <Compile Include="Assets\GPUSking_Anim_Bake\Combine.cs" />
     <Compile Include="Assets\GPUSking_Anim_Bake\Formation.cs" />
     <Compile Include="Assets\GPUSking_Anim_Bake\FormationComponent.cs" />
     <Compile Include="Assets\GPUSking_Anim_Bake\GPUSkinAnimBakeStart.cs" />
