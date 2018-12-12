@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/GPUSking_Anim_Bake/GPUSkinBakerECS.unity
+- path: Assets/quan_xi_test.unity
   isLoaded: 1
   isActive: 1

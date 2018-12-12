@@ -139,7 +139,7 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
                     float3 center = formation.formationPosition;
                     float3 v3 = new float3(center.x + j % formation.width * 3f, 1, center.z + j / formation.width * 3);
                     float4 v4 = new float4(v3.x, v3.y, v3.z, 1);
-                    int index = Randomizer.Range(0, 6, ref motionDeltaTime);
+                    int index = 1;//Randomizer.Range(0, 6, ref motionDeltaTime);
                     AnimationClipDataBaked clip = animationClips[(int)0 * 25 + index];
                     normalizedTime = /*normalizedTimeStart*/0 + deltaTime / clip.AnimationLength;
                     //Unity.Mathematics.Random r = new Unity.Mathematics.Random((uint)Time.realtimeSinceStartup);
@@ -152,7 +152,6 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
                     float upperPixelCenter = lowerPixelCenter + clip.OnePixelOffset;
                     float lerpFactor = (texturePosition - lowerPixelCenter) / clip.OnePixelOffset;
                     float3 texturePositionData = new float3(lowerPixelCenter, upperPixelCenter, lerpFactor);
-
                     if (distance < DistanceMaxLod0)
                     {
                         listPositionData0.Add(v4);
@@ -270,9 +269,9 @@ public class GPUSKinAnimBakeSystem : ComponentSystem
         lodData.Lod3Distance = 30;
         Material material = setting.material;
 
-        SkinnedMeshRenderer r = Combine.CombineIt(bakingObject.transform);
-        //bakedData = KeyframeTextureBaker.BakeClips(renderer, GetAllAnimationClips(renderer.GetComponentInParent<Animation>()), lodData);
-        bakedData = KeyframeTextureBaker.BakeClips(r, GetAllAnimationClips(r.GetComponentInParent<Animation>()), lodData);
+        //SkinnedMeshRenderer r = Combine.CombineIt(bakingObject.transform);
+        bakedData = KeyframeTextureBaker.BakeClips(renderer, GetAllAnimationClips(renderer.GetComponentInParent<Animation>()), lodData);
+        //bakedData = KeyframeTextureBaker.BakeClips(r, GetAllAnimationClips(r.GetComponentInParent<Animation>()), lodData);
 
         TransferAnimationData();
 

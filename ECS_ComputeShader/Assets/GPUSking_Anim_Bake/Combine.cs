@@ -67,24 +67,24 @@ public class Combine : MonoBehaviour {
             smr.enabled = false;
         }
 
-        MeshFilter[] meshFilters = root.GetComponentsInChildren<MeshFilter>();
-        //CombineInstance[] combine = new CombineInstance[meshFilters.Length];
-        Material[] mats = new Material[meshFilters.Length];
-        Matrix4x4 matrix = root.worldToLocalMatrix;
-        for (int i = 0; i < meshFilters.Length; i++)
-        {
-            MeshFilter mf = meshFilters[i];
-            MeshRenderer mr = meshFilters[i].GetComponent<MeshRenderer>();
-            if (mr == null)
-            {
-                continue;
-            }
-            CombineInstance ci = new CombineInstance();
-            ci.mesh = mf.sharedMesh;
-            ci.transform = matrix * mf.transform.localToWorldMatrix;
-            //mr.enabled = false;
-            combineInstances.Add(ci);
-        }
+        //MeshFilter[] meshFilters = root.GetComponentsInChildren<MeshFilter>();
+        ////CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+        //Material[] mats = new Material[meshFilters.Length];
+        //Matrix4x4 matrix = root.worldToLocalMatrix;
+        //for (int i = 0; i < meshFilters.Length; i++)
+        //{
+        //    MeshFilter mf = meshFilters[i];
+        //    MeshRenderer mr = meshFilters[i].GetComponent<MeshRenderer>();
+        //    if (mr == null)
+        //    {
+        //        continue;
+        //    }
+        //    CombineInstance ci = new CombineInstance();
+        //    ci.mesh = mf.sharedMesh;
+        //    ci.transform = matrix * mf.transform.localToWorldMatrix;
+        //    //mr.enabled = false;
+        //    combineInstances.Add(ci);
+        //}
 
         // 获取并配置角色所有的SkinnedMeshRenderer
         SkinnedMeshRenderer tempRenderer = root.gameObject.GetComponent<SkinnedMeshRenderer>();
